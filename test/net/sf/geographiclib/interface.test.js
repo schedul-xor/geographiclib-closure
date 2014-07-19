@@ -1,3 +1,8 @@
+require('nclosure').nclosure({additionalDeps:['deps.js']});
+expect = require('expect.js');
+
+goog.require('net.sf.geographiclib.Interface');
+
 describe('net.sf.geographiclib.Interface',function(){
   var geoInterface = net.sf.geographiclib.Interface.getInstance();
 

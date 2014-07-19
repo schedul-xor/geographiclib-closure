@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
+    <title>Geographic distance example</title>
+    <style>
+      *{font-family: sans-serif;}
+    </style>
+  </head>
+  <body>
+
+    <div class="container-fluid">
+
+      <div class="row-fluid">
+
+        <div class="span12">
+          <h4 id="title">Geographic distance example</h4>
+          <p id="shortdesc">Distance between latitude/longitude</p>
+          <div id="docs">
+            <p>Example of Geographiclib.</p>
+            <p>See the <a href="geographiclib.js" target="_blank">geographiclib.js source</a> to see how this is done.</p>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+
+    <h2>Direct problem</h2>
+    <dl>
+      <dt>Latitude</dt>
+      <dd><div id="direct_latitude"></div></dd>
+      <dt>Longitude</dt>
+      <dd><div id="direct_longitude"></div></dd>
+      <dt>Azimuth</dt>
+      <dd><div id="direct_azimuth"></div></dd>
+      <dt>Distance</dt>
+      <dd><div id="direct_distance"></div></dd>
+    </dl>
+    <div id="solve_direct"></div>
+    <table>
+      <tr><th></th><th>Geographiclib</th></tr>
+      <tr><th>New latitude</th><td><div id="direct_result_latitude_geographiclib"></div></td></tr>
+      <tr><th>New longitude</th><td><div id="direct_result_longitude_geographiclib"></div></td></tr>
+    </table>
+    <h2>Inverse problem</h2>
+    <dl>
+      <dt>FromLatitude</dt>
+      <dd><div id="inverse_latitude_from"></div></dd>
+      <dt>FromLongitude</dt>
+      <dd><div id="inverse_longitude_from"></div></dd>
+      <dt>ToLatitude</dt>
+      <dd><div id="inverse_latitude_to"></div></dd>
+      <dt>ToLongitude</dt>
+      <dd><div id="inverse_longitude_to"></div></dd>
+    </dl>
+    <div id="solve_inverse"></div>
+    <table>
+      <tr><th></th><th>GeographicLib</th></tr>
+      <tr><th>From azimuth</th><td><div id="inverse_result_from_azimuth_geographiclib"></div></td></tr>
+      <tr><th>To azimuth</th><td><div id="inverse_result_to_azimuth_geographiclib"></div></td></tr>
+      <tr><th>Distance</th><td><div id="inverse_result_distance_geographiclib"></div></td></tr>
+    </table>
+
+    <script src="loader.js?id=geographiclib" type="text/javascript"></script>
+  </body>
+</html>

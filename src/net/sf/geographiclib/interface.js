@@ -54,115 +54,9 @@ net.sf.geographiclib.Interface.prototype.direct =
   var gm = net.sf.geographiclib.GeodesicMask.getInstance();
   var outmask = goog.isDef(opt_outmask) ? opt_outmask :
       gm.LATITUDE | gm.LONGITUDE | gm.AZIMUTH;
-  var genDirectResult = this.GenDirect(c[1], c[0], bearing, false,
+  var genDirectResult = this.genDirect_(c[1], c[0], bearing, false,
       distance, outmask);
   return [genDirectResult.lon2, genDirectResult.lat2];
-};
-
-
-/**
- * @param {!number} lat1
- * @param {!number} lon1
- * @param {!number} lat2
- * @param {!number} lon2
- * @param {!number} ds12
- * @param {!number} maxk
- * @return {!Array.<!{
- * lat:!number,
- * lng:!number,
- * azi:!number
- * }>}
- */
-net.sf.geographiclib.Interface.prototype.InversePath =
-    function(lat1, lon1, lat2, lon2, ds12, maxk) {
-  var gm = net.sf.geographiclib.GeodesicMask.getInstance();
-  var t = this.Inverse(lat1, lon1, lat2, lon2);
-  if (!maxk) maxk = 20;
-  goog.asserts.assert(ds12 > 0, 'ds12 must be a positive number');
-  var
-      k = Math.max(1, Math.min(maxk, Math.ceil(t.s12 / ds12))),
-      points = new Array(k + 1);
-  points[0] = {
-    lat: t.lat1,
-    lon: t.lon1,
-    azi: t.azi1
-  };
-  points[k] = {
-    lat: t.lat2,
-    lon: t.lon2,
-    azi: t.azi2
-  };
-  if (k > 1) {
-    var line = new net.sf.geographiclib.GeodesicLine(
-        this.geodesic_, t.lat1, t.lon1, t.azi1,
-        gm.LATITUDE | gm.LONGITUDE | gm.AZIMUTH),
-        da12 = t.a12 / k;
-    var vals;
-    for (var i = 1; i < k; ++i) {
-      vals =
-          line.GenPosition(true, i * da12,
-          gm.LATITUDE | gm.LONGITUDE | gm.AZIMUTH);
-      points[i] = {
-        lat: vals.lat2,
-        lon: vals.lon2,
-        azi: vals.azi2
-      };
-    }
-  }
-  return points;
-};
-
-
-/**
- * @param {!number} lat1
- * @param {!number} lon1
- * @param {!number} azi1
- * @param {!number} s12
- * @param {!number} ds12
- * @param {!number} maxk
- * @return {!Array.<!{
- * lat:!number,
- * lng:!number,
- * azi:!number
- * }>}
- */
-net.sf.geographiclib.Interface.prototype.DirectPath =
-    function(lat1, lon1, azi1, s12, ds12, maxk) {
-  var gm = net.sf.geographiclib.GeodesicMask.getInstance();
-  var t = this.Direct(lat1, lon1, azi1, s12);
-  if (!maxk) maxk = 20;
-  goog.asserts.assert(ds12 > 0, 'ds12 must be a positive number');
-  var
-      k = Math.max(1, Math.min(maxk, Math.ceil(Math.abs(t.s12) / ds12))),
-      points = new Array(k + 1);
-  points[0] = {
-    lat: t.lat1,
-    lon: t.lon1,
-    azi: t.azi1
-  };
-  points[k] = {
-    lat: t.lat2,
-    lon: t.lon2,
-    azi: t.azi2
-  };
-  if (k > 1) {
-    var line = new net.sf.geographiclib.GeodesicLine(
-        this.geodesic_, t.lat1, t.lon1, t.azi1,
-        gm.LATITUDE | gm.LONGITUDE | gm.AZIMUTH),
-        da12 = t.a12 / k;
-    var vals;
-    for (var i = 1; i < k; ++i) {
-      vals =
-          line.GenPosition(true, i * da12,
-          gm.LATITUDE | gm.LONGITUDE | gm.AZIMUTH);
-      points[i] = {
-        lat: vals.lat2,
-        lon: vals.lon2,
-        azi: vals.azi2
-      };
-    }
-  }
-  return points;
 };
 
 
@@ -177,7 +71,7 @@ net.sf.geographiclib.Interface.prototype.DirectPath =
  * lon:!number
  * }>}
  */
-net.sf.geographiclib.Interface.prototype.Circle =
+net.sf.geographiclib.Interface.prototype.circle =
     function(lat1, lon1, azi1, s12, k) {
   var gm = net.sf.geographiclib.GeodesicMask.getInstance();
   goog.asserts.assert(Math.abs(lat1) <= 90, 'lat1 must be in [-90, 90]');
@@ -195,7 +89,7 @@ net.sf.geographiclib.Interface.prototype.Circle =
     var azi1a = azi1 + (k - i) * 360 / k;
     if (azi1a >= 180) azi1a -= 360;
     vals =
-        this.GenDirect(lat1, lon1, azi1a,
+        this.genDirect_(lat1, lon1, azi1a,
         false, s12, gm.LATITUDE | gm.LONGITUDE);
     points[i] = {
       lat: vals.lat2,
@@ -224,7 +118,7 @@ net.sf.geographiclib.Interface.prototype.Circle =
  * M21:!number
  * }}
  */
-net.sf.geographiclib.Interface.prototype.GenDirect =
+net.sf.geographiclib.Interface.prototype.genDirect_ =
     function(lat1, lon1, azi1, arcmode, s12_a12, outmask) {
   var gm = net.sf.geographiclib.GeodesicMask.getInstance();
   var line = new net.sf.geographiclib.GeodesicLine(
@@ -244,7 +138,7 @@ net.sf.geographiclib.Interface.prototype.GenDirect =
  * lon:!number
  * }>}
  */
-net.sf.geographiclib.Interface.prototype.Envelope =
+net.sf.geographiclib.Interface.prototype.envelope =
     function(lat1, lon1, k, ord) {
   goog.asserts.assert(Math.abs(lat1) <= 90,
       'lat1 must be in [-90, 90]');
