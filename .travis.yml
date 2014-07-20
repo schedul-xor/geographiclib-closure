@@ -7,7 +7,7 @@ before_script:
   - 'wget https://github.com/openlayers/ol3/archive/master.zip'
   - 'unzip master.zip'
   - 'rm master.zip'
-  - 'cp -r ol3-master/src/ol src/ol'
+  - 'cp -r ol3-master/src/ol src'
   - 'python node_modules/nclosure/third_party/closure-library/closure/bin/build/depswriter.py "--root_with_prefix=src/ ../../../../../../src" "--root_with_prefix=examples/ ../../../../../../examples" "--root_with_prefix=node_modules/nclosure/lib/third_party/node ../../../../lib/third_party/node" > deps.js'
 
 script:
