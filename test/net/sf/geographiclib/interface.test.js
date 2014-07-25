@@ -27,4 +27,9 @@ describe('net.sf.geographiclib.Interface',function(){
     expect(dir[0],tokyo[0],0.0000001);
     expect(dir[1],tokyo[1],0.000001);
   });
+
+  it('should return direct position from (0,0)',function(){
+    var dir = geoInterface.direct([0,0],100,200);
+    expect(dir).not.to.be(undefined);
+  });
 });
