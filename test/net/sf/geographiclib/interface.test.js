@@ -29,7 +29,7 @@ describe('net.sf.geographiclib.Interface',function(){
   });
 
   it('should return direct position from (0,0)',function(){
-    var dir = geoInterface.direct([0,0],100,200);
+    var dir = geoInterface.direct([0,0],1503.3296378372909,226.18592516570962);
     expect(dir).not.to.be(undefined);
   });
 });
