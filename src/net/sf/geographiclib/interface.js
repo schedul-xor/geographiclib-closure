@@ -101,6 +101,7 @@ net.sf.geographiclib.Interface.prototype.circle =
 
 
 /**
+ * @private
  * @param {!number} lat1
  * @param {!number} lon1
  * @param {!number} azi1
