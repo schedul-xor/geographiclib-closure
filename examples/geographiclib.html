@@ -1,33 +1,13 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <meta name="viewport" content="initial-scale=1.0, user-scalable=no, width=device-width">
-    <title>Geographic distance example</title>
-    <style>
-      *{font-family: sans-serif;}
-    </style>
-  </head>
-  <body>
-
-    <div class="container-fluid">
-
-      <div class="row-fluid">
-
-        <div class="span12">
-          <h4 id="title">Geographic distance example</h4>
-          <p id="shortdesc">Distance between latitude/longitude</p>
-          <div id="docs">
-            <p>Example of Geographiclib.</p>
-            <p>See the <a href="geographiclib.js" target="_blank">geographiclib.js source</a> to see how this is done.</p>
-          </div>
-        </div>
-
-      </div>
-
-    </div>
-
+---
+template: example.html
+title: Geographiclib distance example
+shortdesc: Simple example
+docs: >
+  Show how the distances are calculated
+tags: "geographiclib"
+---
+<div class="row-fluid">
+  <div class="span12">
     <h2>Direct problem</h2>
     <dl>
       <dt>Latitude</dt>
@@ -63,7 +43,5 @@
       <tr><th>To azimuth</th><td><div id="inverse_result_to_azimuth_geographiclib"></div></td></tr>
       <tr><th>Distance</th><td><div id="inverse_result_distance_geographiclib"></div></td></tr>
     </table>
-
-    <script src="loader.js?id=geographiclib" type="text/javascript"></script>
-  </body>
-</html>
+  </div>
+</div>

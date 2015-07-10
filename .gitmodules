@@ -1,0 +1,7 @@
+[submodule "vendor/ol3"]
+	path = vendor/ol3
+	url = git@github.com:schedul-xor/ol3.git
+	branch = private-master
+[submodule "vendor/schedul-math-js"]
+	path = vendor/schedul-math-js
+	url = git@bitbucket.org:schedulxor/schedul-math-js.git
