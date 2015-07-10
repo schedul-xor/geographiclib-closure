@@ -1,8 +1,10 @@
 {
   "exports": ["*"],
-  "src":["src/**/*.js", "examples/geographiclib.js"],
+    "src":["src/**/*.js", "build/ol.ext/*.js","examples/geographiclib.js"],
   "compile": {
-    "externs": [
+      "externs": [
+	  "externs/olx.js",
+	  "externs/oli.js"
     ],
     "define": [
       "goog.DEBUG=false"

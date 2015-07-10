@@ -8,10 +8,11 @@ before_install:
 
 before_script:
   - 'cp -r vendor/ol3/src/ol src'
+  - 'cp -r vendor/ol3/externs .'
   - 'cp -r vendor/schedul-math-js/src/schedul src'
 
 script:
   - "mkdir build"
-  - "node tasks/generate-requires.js `find test/spec | grep \.js$` > build/test_requires.js"
+  - "sh generate_requires.sh"
   - "node tasks/test.js"
   - "node tasks/build.js config/geographiclib.json build/geographiclib.min.js"

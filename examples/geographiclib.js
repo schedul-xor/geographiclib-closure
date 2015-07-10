@@ -25,7 +25,7 @@ var directResultLongitudeGeographiclib = new goog.ui.LabelInput();
 directResultLongitudeGeographiclib.render(goog.dom.getElement('direct_result_longitude_geographiclib'));
 var directSolveButton = new goog.ui.Button('Solve direct');
 directSolveButton.render(goog.dom.getElement('solve_direct'));
-goog.events.listen(directSolveButton,goog.ui.Component.EventType.ACTION,function(){
+goog.events.listen(directSolveButton, goog.ui.Component.EventType.ACTION, function() {
   var directLatitudeValue = Number(directLatitude.getValue());
   var directLongitudeValue = Number(directLongitude.getValue());
   var directAzimuthValue = Number(directAzimuth.getValue());
@@ -33,10 +33,10 @@ goog.events.listen(directSolveButton,goog.ui.Component.EventType.ACTION,function
 
   // Geographiclib
   var geographiclibInterface = net.sf.geographiclib.Interface.getInstance();
-  var geoLibDirect = geographiclibInterface.direct([directLongitudeValue,directLatitudeValue],directDistanceValue,directAzimuthValue);
-  directResultLatitudeGeographiclib.setValue(geoLibDirect[1]);
-  directResultLongitudeGeographiclib.setValue(geoLibDirect[0]);
-},true,this);
+  var geoLibDirect = geographiclibInterface.direct([directLongitudeValue, directLatitudeValue], directDistanceValue, directAzimuthValue);
+  directResultLatitudeGeographiclib.setValue(geoLibDirect[1] + '');
+  directResultLongitudeGeographiclib.setValue(geoLibDirect[0] + '');
+},true, this);
 
 
 // Inverse problem
@@ -62,7 +62,7 @@ inverseResultDistanceGeographiclib.render(goog.dom.getElement('inverse_result_di
 
 var inverseSolveButton = new goog.ui.Button('Solve inverse');
 inverseSolveButton.render(goog.dom.getElement('solve_inverse'));
-goog.events.listen(inverseSolveButton,goog.ui.Component.EventType.ACTION,function(){
+goog.events.listen(inverseSolveButton, goog.ui.Component.EventType.ACTION, function() {
   var inverseLatitudeFromValue = Number(inverseLatitudeFrom.getValue());
   var inverseLongitudeFromValue = Number(inverseLongitudeFrom.getValue());
   var inverseLatitudeToValue = Number(inverseLatitudeTo.getValue());
@@ -70,8 +70,8 @@ goog.events.listen(inverseSolveButton,goog.ui.Component.EventType.ACTION,functio
 
   // Geographiclib
   var geographiclibInterface = net.sf.geographiclib.Interface.getInstance();
-  var geoLibInverse = geographiclibInterface.inverse([inverseLongitudeFromValue,inverseLatitudeFromValue],[inverseLongitudeToValue,inverseLatitudeToValue]);
-  inverseResultFromAzimuthGeographiclib.setValue(geoLibInverse.initialBearing);
-  inverseResultToAzimuthGeographiclib.setValue(geoLibInverse.finalBearing);
-  inverseResultDistanceGeographiclib.setValue(geoLibInverse.distance);
+  var geoLibInverse = geographiclibInterface.inverse([inverseLongitudeFromValue, inverseLatitudeFromValue], [inverseLongitudeToValue, inverseLatitudeToValue]);
+  inverseResultFromAzimuthGeographiclib.setValue(geoLibInverse.initialBearing + '');
+  inverseResultToAzimuthGeographiclib.setValue(geoLibInverse.finalBearing + '');
+  inverseResultDistanceGeographiclib.setValue(geoLibInverse.distance + '');
 });
